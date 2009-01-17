@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title> accordion.js unit test file</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <script src="./prototype-1.6.0.3.js" type="text/javascript"></script>
+  <script src="./scriptaculous/scriptaculous.js" type="text/javascript"></script>
+  <script src="./scriptaculous/unittest.js" type="text/javascript"></script>
+  <script src="accordion.js" type="text/javascript"></script>
+
+  <link rel="stylesheet" href="test.css" type="text/css"/>
+</head>
+<body>
+<h1> accordion.js unit test file</h1>
+
+<p>
+  Tests for accordion.js
+</p>
+<!-- Log output -->
+<div id="testlog">
+</div>
+
+<!-- the test looks for this ul -->
+<h5>Test Data</h5>
+<div id="tool_accordion" class="accordion">
+	<h4  class="accordion_toggle">
+		<a href="#bellow1" class="image bellow1" id="toggle1">Link1</a>
+	</h4>
+	<div id="bellow1" class="accordion_content">
+		<div class="about clearfix">
+			<p>Text</p>
+		</div>
+	</div>
+	
+	<h4 class="accordion_toggle">
+		<a href="#bellow2" class="image bellow2" id="toggle2">Link2</a>
+	</h4>
+	<div id="bellow2" class="accordion_content">
+		<div class="about clearfix">
+			<p>Text</p>
+		</div>
+	</div>
+
+
+	<h4 class="accordion_toggle">
+		<a href="#bellow3" class="image bellow3" id="toggle3">Link3</a>
+	</h4>
+	<div id="bellow3" class="accordion_content">
+		<div class="about clearfix">
+			<p>Text</p>
+		</div>
+	</div>
+</div>
+<h5>Test Data Ends</h5>
+
+<div id="error_div"></div>
+
+<!-- Tests follow -->
+<script type="text/javascript" language="javascript" charset="utf-8">
+// <![CDATA[
+	new Test.Unit.Runner({
+	  testClassShouldExistAndInitialize: function() {
+	    with (this) {
+	      assert(Accordion, 'Where is Accordion?');
+	      var accordion = new Accordion('.accordion_toggle', '.accordion_content');
+				assertEqual('.accordion_toggle', accordion.toggle);
+				assertEqual('.accordion_content', accordion.content);
+	    }
+	  },
+	  testShowsSelectedBellow: function() {
+	    with (this) {
+			  var accordion = new Accordion('.accordion_toggle', '.accordion_content');
+			  accordion.observe();
+			  accordion.play($('toggle1'));
+			  assertEqual('block',$('bellow1').getStyle('display'));
+			  assertEqual('none',$('bellow2').getStyle('display'));
+			  assertEqual('none',$('bellow3').getStyle('display'));
+			  accordion.play($('toggle2'));
+			  assertEqual('block',$('bellow2').getStyle('display'));
+			  assertEqual('none',$('bellow1').getStyle('display'));
+			  assertEqual('none',$('bellow3').getStyle('display'));
+	    }
+	  },
+	  testShowsFirstBellowOnLoad: function() {
+	    with (this) {
+			  var accordion = new Accordion('.accordion_toggle', '.accordion_content');
+				accordion.onLoad();
+			  assertEqual('block',$('bellow1').getStyle('display'));
+			  assertEqual('none',$('bellow2').getStyle('display'));
+			  assertEqual('none',$('bellow3').getStyle('display'));
+	    }
+	  }
+	});
+// ]]>
+</script>
+</body>
+</html>

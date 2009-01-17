@@ -1,0 +1,12 @@
+Simple Accordion(Prototype 1.6)
+We got frustrated of using AccordionV2.0 because with Prototype1.6 it started rendering with really bad effects. So we wrote our own which was considerably simpler.
+
+Here it is for all to use.
+
+Look at the test file to know what kind of elements it supports.
+
+More to come...
+1) Horizontal accordion
+2) Effects 
+and more..
+
